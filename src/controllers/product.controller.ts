@@ -7,8 +7,14 @@ const create = async (req: Request, res: Response) => {
   return res.status(statusCode.CREATED).json(newProduct);
 };
 
+const getAll = async (req: Request, res: Response) => {
+  const allProducts = await productService.getAll();
+  return res.status(statusCode.OK).json(allProducts);
+};
+
 const productController = {
   create,
+  getAll,
 };
 
 export default productController;
