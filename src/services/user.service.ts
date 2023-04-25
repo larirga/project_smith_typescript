@@ -6,8 +6,14 @@ const create = async (user: User): Promise<User> => {
   return newUser;
 };
 
+const login = async (username: string) => {
+  const newUser = await userModel.login(username);
+  return newUser;
+};
+
 const userService = {
   create,
+  login,
 };
 
 export default userService;

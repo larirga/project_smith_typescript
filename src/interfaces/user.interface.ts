@@ -4,6 +4,7 @@ interface User {
   vocation: string;
   level: number;
   password: string;
+  message?: string;
 }
 
 export default User;

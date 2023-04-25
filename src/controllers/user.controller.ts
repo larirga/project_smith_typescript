@@ -9,8 +9,19 @@ const create = async (req: Request, res: Response) => {
   return res.status(statusCode.CREATED).json({ token });
 };
 
+const login = async (req: Request, res: Response) => {
+  const { username } = req.body;
+  const newUser = await userService.login(username);
+  if (!newUser.id || newUser.password !== req.body.password) {
+    return res.status(statusCode.UNAUTHORIZED).json({ message: 'Username or password invalid' });
+  }
+  const token = generateToken(newUser);
+  return res.status(statusCode.OK).json({ token });
+};
+
 const userController = {
   create,
+  login,
 };
 
 export default userController;
